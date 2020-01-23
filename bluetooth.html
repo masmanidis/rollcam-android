@@ -1,0 +1,34 @@
+<div data-page="bluetooth" class="page">
+	<div class="navbar">
+		<div class="navbar-inner">
+			<div class="left"><a href="#" class="back link icon-only"><i class="icon icon-back"></i></a></div>
+			<div class="center" lex="tr_company">Bluetooth List</div>
+			<div class="right">
+				<a href="#" v-on:click="isEnabled"  class="link icon-only"><i class="fa fa-search" aria-hidden="true"></i></a>
+			</div>
+		</div>
+	</div> 
+	<div class="page-content" id="btItems"> 
+		<div class="content-block">
+			<div class="list-block">
+				<div class="list-block-label">List of devices</div> 
+				<ul>  
+					<li v-for="item in items">
+						<a href="#" v-on:click="connect" v-model="macAddress" :macAddress='item.address'  :macName='item.name' class="item-link item-content">
+							<div class="item-media"><i class="fa fa-bluetooth-b fa-2x" aria-hidden="true"></i></div>
+							<div class="item-inner">
+							  <div class="item-title">{{ item.name }}</div>
+							  <div class="item-after"> </div>
+							</div>
+						  </a>
+ 					</li>
+				</ul>
+				
+			</div>
+		
+			
+		</div>
+		
+	</div>
+
+</div> 

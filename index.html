@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+	<head>  
+		<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="msapplication-tap-highlight" content="no">
+
+		<title>Rollcam Project</title>
+		<link rel="stylesheet" href="lib/framework7/css/framework7.material.min.css">
+		<link rel="stylesheet" href="lib/framework7/css/framework7.material.colors.min.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/styles.css">
+	</head>
+
+	<body  onload="onLoad();" class="theme-red">
+		<!-- Status bar overlay for full screen mode (PhoneGap) -->
+		<div class="statusbar-overlay"></div>
+		<!-- Panels overlay-->
+		<div class="panel-overlay"></div>
+		<!-- Left panel with reveal effect-->
+		<div class="panel panel-left panel-reveal">
+			<div class="content-block">
+				<p>Rollcam</p>
+			</div>
+		</div>
+		<div class="views"> 
+			<div class="view view-main">
+				<div class="pages navbar-fixed">
+					<div data-page="index" class="page" >
+						<div class="navbar">
+							<div class="navbar-inner">
+								<div class="left">
+									<a href="about.html" class="link">Rollcam</a>
+								</div>
+								<div class="right">
+									<a href="bluetooth.html" class="link"><i class="fa fa-bluetooth" aria-hidden="true"></i></a>
+								</div>
+							</div>
+						</div>
+						<div class="page-content" id="vapp"> <!-- -->
+							<div class="content-block" style="display:none;">
+								<div class="buttons-row">
+									<a href="#tab1" id="tab1link" v-on:click="tablink" v-bind:class="[tabSettingsActive ? activeTabClass : tabClass]" disabled><i class="fa fa-cogs" aria-hidden="true"></i> Settings</a>
+									<a href="#tab2" id="tab2link" v-on:click="tablink" v-bind:class="[tabControlsActive ? activeTabClass : tabClass]" disabled><i class="fa fa-arrows-alt" aria-hidden="true"></i> Controls</a>
+								</div>
+							</div>
+							<!-- Tabs, tabs wrapper -->
+							<div class="tabs">
+							<!-- Tab 1, active by default -->
+								<div id="tab1" class="tab active">
+									<div style="text-align:center;"><h3><i class="fa fa-cogs" aria-hidden="true"></i> Rollcam Settings </h3></div>
+									<div class="list-block">
+										<ul>
+											<li>
+												<a href="#" class="item-link smart-select rollCamSteps" data-back-on-select="true">
+													<select id="rollCamSteps" name="rollCamSteps">
+													</select>
+													<div class="item-content">
+													  <div class="item-inner">
+														<div class="item-title"><i class="fa fa-step-forward" id="stepsFa" aria-hidden="true"></i> <span lex="tr_av_loc" id="stepsToggle"> Steps (for every movement)</span></div>
+													  </div>
+													</div>
+												</a>
+											</li>
+											<li  id="smartInfraredModels" style="display:none;">
+												<a href="#" class="item-link smart-select InfraredModels" data-back-on-select="true">
+													<select id="InfraredModels" name="InfraredModels">
+														<option value="3,S,0xb4b8f,20">SONY</option>
+														<option value="2" disabled>CANON</option>
+														<option value="3" disabled>NIKON</option>
+													</select>
+													<div class="item-content">
+													  <div class="item-inner">
+														<div class="item-title"><i class="fa fa-camera" aria-hidden="true"></i> <span lex="tr_av_loc" id="revolutionTime"> Select Camera Model </span></div>
+													  </div>
+													</div>
+												</a>
+											</li>
+											<li  id="smartSecPerRevol" style="display:none;">
+												<a href="#" class="item-link smart-select secPerRevol" data-back-on-select="true">
+													<select id="secPerRevol" name="secPerRevol">
+														<option value="66">15 secs</option>
+														<option value="43">20 secs</option>
+														<option value="33" selected>30 secs</option>
+														<option value="22">45 secs</option>
+														<option value="16">60 secs</option>
+													</select>
+													<div class="item-content">
+													  <div class="item-inner">
+														<div class="item-title"><i class="fa fa-clock-o" aria-hidden="true"></i> <span lex="tr_av_loc" id="revolutionTime"> Seconds per Revolution </span></div>
+													  </div>
+													</div>
+												</a>
+											</li>
+											<li style="height:40px;">&nbsp;&nbsp;</li>	 
+											<li>
+												<a href="#" class="item-link smart-select rollCamDelay" data-back-on-select="true" data-open-in="popup">
+													<select id="rollCamDelay" name="rollCamDelay">
+													</select>
+													<div class="item-content">
+													  <div class="item-inner">
+														<div class="item-title"><i class="fa fa-clock-o" aria-hidden="true"></i><span lex="tr_av_loc"> Delay (before movement)</span></div>
+														
+													  </div>
+													</div>
+												</a>
+											</li>
+											<!-- <li>
+												<div class="item-content">
+													<div class="item-inner not-empty-state">
+														<div class="item-title floating-label"><h3> <i class="fa fa-clock-o" aria-hidden="true"></i> Delay (before movement)</h3></div>
+														<div class="item-input item-input-field not-empty-state">
+															<input type="text" readonly id="rollCamDelay">
+														</div>
+													</div>
+												</div>
+											</li>-->
+											 <li style="height:10px;">&nbsp;&nbsp;</li>	 
+											 
+											<li> 
+												<div class="row">
+													
+													<div align="right" class="col-100 tablet-100">
+														<div class="item-content">
+															<div class="item-inner not-empty-state">
+																<div class="item-title label">
+																	<a href="presets_list.html" class="link"><i class="fa fa-magic" aria-hidden="true"></i> Load Presets</a>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-33 tablet-33">
+														<div class="item-content">
+															<div class="item-inner not-empty-state">
+																<div class="item-title label"><i class="fa fa-bullseye" aria-hidden="true"></i> Infrared</div>
+																<div class="item-input">
+																	<label class="label-switch">
+																		<input v-on:click="useInfrared" id="useInfrared" type="checkbox">
+																		<div class="checkbox"></div>
+																	</label>
+																</div>	
+															</div>
+														</div>
+													</div>
+													
+													<div class="col-33 tablet-33">
+														<div class="item-content">
+															<div class="item-inner not-empty-state">
+																<div class="item-title label"><i class="fa fa-bolt" aria-hidden="true"></i> Flash</div>
+																<div class="item-input">
+																	<label class="label-switch">
+																		<input v-on:click="moveAfterFlash" id="moveAfterFlash" type="checkbox">
+																		<div class="checkbox"></div>
+																	</label>
+																</div>	
+															</div>
+														</div>
+													</div>
+													<div class="col-33 tablet-33">
+														<div class="item-content">
+															<div class="item-inner not-empty-state">
+																<div class="item-title label"><i class="fa fa-video-camera" aria-hidden="true"></i> Video </div>
+																<div class="item-input">
+																	<label class="label-switch">
+																		<input v-on:click="useVideo" id="useVideo" type="checkbox">
+																		<div class="checkbox"></div>
+																	</label>
+																</div>	
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li style="height:30px;">&nbsp;&nbsp;</li>	 
+											
+											<li>
+												<div class="content-block">
+													<p class="buttons-row">
+														<a href="#" v-on:click="runRollcam" class="button button-big button-fill button-raised"><i class="fa fa-paper-plane" aria-hidden="true"></i> Run Rollcam</a>
+													</p>
+												</div>
+											</li>
+										</ul>
+									</div> 
+									 
+								</div>
+								<!-- Tab 2 -->
+								<div id="tab2" class="tab">
+									<div class="content-block">
+										<div style="text-align:center;"><h3><i class="fa fa-arrows-alt" aria-hidden="true"></i> Rollcam Controls </h3></div>
+										<div class="content-block">
+											<div class="row">
+												<div class="col-100 tablet-100">
+													<p><h3>Progress<h3></p>
+													<div style="text-align:center;"> 
+														<span id="stepDisplay">0</span> / <span id="totalSteps">50</span>  
+														<div id="timerClock" style="display:none;" > <i class="fa fa-clock-o" aria-hidden="true"></i>  <span id="minutes">00</span>:<span id="seconds">00</span> </div> 
+													</div>
+													<br/>
+													<p><h3>Adjust Movements<h3></p>
+													<p class="buttons-row" style="border-bottom:2px dotted teal">
+														<a href="#" v-on:click="oneStepBack" class="button button-big    color-teal ripple-blue"><i class="fa fa-step-backward fa-2x" aria-hidden="true"></i> </a>
+														<a href="#" v-on:click="oneStepFw" class="button button-big     color-teal ripple-blue"><i class="fa fa-step-forward fa-2x" aria-hidden="true"></i></a> 
+														<a href="#" v-on:click="stop" btnType="stop" id="stopWrap" class="button button-big color-red ripple-blue"><i id="play_stop" class="fa fa-stop fa-2x" aria-hidden="true"></i></a> 
+														<a href="#" v-on:click="resets" class="button button-big     color-teal ripple-blue"><i class="fa fa-refresh fa-2x" aria-hidden="true"></i></a> 
+													</p>	
+													<p class="buttons-row">
+														<a href="#" v-on:click="exit" class="button button-big button-fill   color-teal ripple-blue"><i class="fa fa-arrow-circle-left fa-1x" aria-hidden="true"></i> Exit</a> 
+													</p>
+												</div>
+											</div>
+										</div>          
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="cordova.js"></script>
+		<script type="text/javascript" src="lib/vuejs/vue.min.js"></script>
+		<script type="text/javascript" src="lib/framework7/js/framework7.min.js"></script>
+		<script type="text/javascript" src="js/my-app.js"></script>
+	</body>
+</html>

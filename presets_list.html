@@ -1,0 +1,45 @@
+<div data-page="presets_list" class="page">
+	<div class="navbar"> 
+		<div class="navbar-inner">
+			<div class="left"><a href="#" class="back link icon-only"><i class="icon icon-back"></i></a></div>
+			<div class="center" lex="tr_company">Program List</div>
+			<div class="right"></div>
+		</div> 
+	</div>    
+	<div class="page-content" id="presetsItems">
+		<div class="content-block">
+			<div class="list-block"> 
+				     
+				<ul>
+				  
+					<li  v-for="item in items" :class="'swipeout preset' + item.pos">
+						<div class="swipeout-content item-content" v-on:click="openSwipeout"   :presetArrPos="item.pos" >
+								
+							<div class="item-inner">
+								 
+									<div class="item-title"><i class="fa fa-step-forward" aria-hidden="true"></i> {{ item.steps }}  -  <i class="fa fa-clock-o" aria-hidden="true"></i> {{ item.delay }} </div>
+									<div class="item-after"> {{ item.title }}</div>
+								 
+							 
+								
+							</div>
+							 
+						</div>
+					   
+					  <div class="swipeout-actions-right">
+							<a href="#" v-on:click="selectPreset" :presetArrPos="item.pos" class="swipeout-overswipe bg-blue presetSelect">Select</a>
+							<a href="#" v-on:click="selectEdit" :presetArrPos="item.pos" class="bg-red presetEdit">Edit</a>
+					  </div>
+					</li>
+				
+				
+				</ul>
+				 
+			</div>
+		
+			
+		</div>
+		
+	</div>
+
+</div> 
