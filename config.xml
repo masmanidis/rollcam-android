@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.rollcam.project" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>rollcam</name>
+    <description>
+        Rollcam Project
+    </description>
+    <author email="masmanidisd@gmail.com" href="http://www.rollcam.gr">
+        Masmanidis Dimitris
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <platform name="android">
+    <preference name="phonegap-version" value="cli-8.0.0" />
+    <preference name="android-minSdkVersion" value="14" />            
+    <preference name="android-targetSdkVersion" value="23" />  
+        <icon density="ldpi" src="res/Android/res/drawable-ldpi/icon.png" />
+        <icon density="mdpi" src="res/Android/res/drawable-mdpi/icon.png" />
+        <icon density="hdpi" src="res/Android/res/drawable-hdpi/icon.png" />
+        <icon density="xhdpi" src="res/Android/res/drawable-xhdpi/icon.png" />
+        <icon density="xxhdpi" src="res/Android/res/drawable-xxhdpi/icon.png" />
+        <icon density="xxxhdpi" src="res/Android/res/drawable-xxxhdpi/icon.png" />
+        <splash density="ldpi" src="res/Android/res/drawable-ldpi/screen.png" />
+        <splash density="mdpi" src="res/Android/res/drawable-mdpi/icon.png" />
+        <splash density="hdpi" src="res/Android/res/drawable-hdpi/icon.png" />
+        <splash density="xhdpi" src="res/Android/res/drawable-xhdpi/icon.png" />
+        <splash density="port-xxhdpi" src="res/Android/res/drawable-xxhdpi/icon.png" />
+        <splash density="land-xxhdpi" src="res/Android/res/drawable-land-xxhdpi/icon.png" />
+    </platform>
+    <platform name="browser">
+        <preference name="SplashScreen" value="res/Web/Icons/favicon.png" />
+        <preference name="SplashScreenDelay" value="3000" />
+        <preference name="SplashScreenBackgroundColor" value="green" />
+        <preference name="ShowSplashScreen" value="false" />
+        <preference name="SplashScreenWidth" value="600" />
+        <preference name="SplashScreenHeight" value="300" />
+    </platform>
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+	<allow-intent href="market:*" />
+	<preference name="DisallowOverscroll" value="true" />
+    <preference name="AutoHideSplashScreen" value="true" />
+    <preference name="SplashScreenDelay" value="3000" />
+	<preference name="android-minSdkVersion" value="14" />            
+    <preference name="android-targetSdkVersion" value="23" />  
+    <plugin name="cordova-plugin-battery-status" spec="1.2.5" />
+    <plugin name="cordova-plugin-console" spec="1.0.7" />
+    <plugin name="cordova-plugin-device" spec="1.1.7" />
+    <plugin name="cordova-plugin-splashscreen" spec="4.0.3" />
+    <plugin name="cordova-plugin-statusbar" spec="1.0.1" />
+    <plugin name="cordova-plugin-whitelist" spec="1.2.2" />
+    <plugin name="cordova-plugin-bluetooth-serial" spec="~0.4.7" />
+</widget>
